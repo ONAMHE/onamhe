@@ -1,0 +1,15 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: goods-web
+  thymeleaf:
+    cache: false  #关闭缓存，如果是开发就关闭，但是实际应用可以开启
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+    registry-fetch-interval-seconds: 10  #设置拉去服务时间
+  instance:
+    lease-expiration-duration-in-seconds: 15   #配置过期时间
+    lease-renewal-interval-in-seconds: 5   #设置心跳时间

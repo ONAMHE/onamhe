@@ -1,0 +1,15 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+  elasticsearch:
+    uris: http://169.254.96.28:9200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+    registry-fetch-interval-seconds: 10  #设置拉去服务时间
+  instance:
+    lease-expiration-duration-in-seconds: 15  #设置过期时间
+    lease-renewal-interval-in-seconds: 5 #设置心跳时间

@@ -1,0 +1,38 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: leyou-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: path_route_1
+          uri: http://localhost:8080  #匹配成功后方位的路径
+#          uri: lb://item-service        #写eureka中的服务名也可以
+          predicates:
+            - Path=/api/item/**,/hwm/item/**      #匹配规则，可以写多个匹配规则
+          filters:
+            - StripPrefix=2  #将第一级访问路径截取
+#            -  PrefixPath=/user #表示在转发前添加一层路径
+
+
+        - id: path_route_2
+          uri: http://localhost:8083  #匹配成功后方位的路径
+            #          uri: lb://item-service        #写eureka中的服务名也可以
+          predicates:
+              - Path=/api/search,/hwm/itm/**      #匹配规则，可以写多个匹配规则
+          filters:
+              - StripPrefix=1  #将第一级访问路径截取
+        #            -  PrefixPath=/user #表示在转发前添加一层路径
+      discovery:
+        locator:
+          enabled: true #开启根据服务名称自动转发
+          lower-case-service-id: true #微服务名称以小写形式呈现
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+    registry-fetch-interval-seconds: 5  #设置服务列表刷新时间

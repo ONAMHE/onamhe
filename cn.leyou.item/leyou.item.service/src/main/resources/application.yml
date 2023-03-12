@@ -1,0 +1,26 @@
+server:
+  port:8080
+spring:
+  application:
+    name: item-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource   #修改默认的连接池类型
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/onamhe
+    username: root
+    password: hwm5883838
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5   #配置心跳时间
+    lease-expiration-duration-in-seconds: 15   #配置过期时间
+mybatis:
+  type-aliases-package: cn.leyou.item.pojo #配置包别名
+
+
+management:
+  server:
+    port: 8887   #使用actuator来测试微服务是否可用，需要重新写一个接口，不然无法使用，要测试那个类就在哪个类配置文件定义这个接口
+    #测试成功就会有一个页面返回一堆没有用的数据

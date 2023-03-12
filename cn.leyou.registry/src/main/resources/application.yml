@@ -1,0 +1,40 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: leyou-registry
+  cloud:
+    loadbalancer:
+      cache:
+        enabled: false   #关闭咖啡应的缓存，可以解决相关的警告
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+    register-with-eureka: false   #不将自己注册到服务中心
+    fetch-registry: false  #表明自己就是微服务的服务器，不扫描服务列表
+  server:
+    enable-self-preservation: false  #表示关闭自我保护模式，
+    eviction-interval-timer-in-ms: 10000  #剔除无效服务间隔时间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
